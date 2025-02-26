@@ -1,4 +1,19 @@
 services:
+  postgres:
+    container_name: recipe_postgres-db
+    image: postgres:14-alpine
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d postgres -U postgres"]
+      interval: 1s
+      timeout: 2s
+      retries: 15
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secret
+
   api:
     image: recipe-api
     container_name: recipe-api
@@ -7,3 +22,13 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
+    environment:
+      API_SERVICE_PORT: 8080
+      DB_NAME: postgres
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASS: secret
+    depends_on:
+      postgres:
+        condition: service_healthy
