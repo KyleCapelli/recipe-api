@@ -1,0 +1,9 @@
+services:
+  api:
+    image: recipe-api
+    container_name: recipe-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
