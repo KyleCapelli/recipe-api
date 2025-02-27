@@ -12,10 +12,4 @@ public class RecipeMapper {
         return new Recipe(entity.getId(), entity.getTitle(), entity.getImageUrl(), entity.getDifficulty());
     }
 
-    public static RecipeEntity toEntity(Recipe recipe) {
-        if (recipe == null) {
-            return null;
-        }
-        return new RecipeEntity(recipe.getTitle(), recipe.getImageUrl(), recipe.getDifficulty());
-    }
 }

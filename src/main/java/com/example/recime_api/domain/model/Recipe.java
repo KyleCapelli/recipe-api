@@ -1,10 +1,10 @@
 package com.example.recime_api.domain.model;
 
 public class Recipe {
-    private Long id;
-    private String title;
-    private String imageUrl;
-    private Difficulty difficulty;
+    private final Long id;
+    private final String title;
+    private final String imageUrl;
+    private final Difficulty difficulty;
 
     public Recipe(Long id, String title, String imageUrl, Difficulty difficulty) {
         this.id = id;
