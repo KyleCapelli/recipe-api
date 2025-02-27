@@ -2,6 +2,8 @@ package com.example.recime_api.data.entity;
 
 import com.example.recime_api.domain.model.Difficulty;
 import jakarta.persistence.*;
+import org.hibernate.annotations.JdbcType;
+import org.hibernate.dialect.PostgreSQLEnumJdbcType;
 
 @Entity
 @Table(name = "recipe")
@@ -17,8 +19,8 @@ public class RecipeEntity {
     @Column(name = "image_url", nullable = false)
     private String imageUrl;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Enumerated
+    @JdbcType(PostgreSQLEnumJdbcType.class)
     private Difficulty difficulty;
 
     protected RecipeEntity() {}
