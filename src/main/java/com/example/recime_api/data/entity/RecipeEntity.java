@@ -21,6 +21,7 @@ public class RecipeEntity {
 
     @Enumerated
     @JdbcType(PostgreSQLEnumJdbcType.class)
+    @Column(nullable = false)
     private Difficulty difficulty;
 
     protected RecipeEntity() {}
