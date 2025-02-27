@@ -21,9 +21,9 @@ services:
     volumes:
       - ./src/main/resources/migrations/:/flyway/sql
     environment:
-      - FLYWAY_URL=jdbc:postgresql://postgres:5432/postgres
-      - FLYWAY_USER=postgres
-      - FLYWAY_PASSWORD=secret
+      FLYWAY_URL: jdbc:postgresql://postgres:5432/postgres
+      FLYWAY_USER: postgres
+      FLYWAY_PASSWORD: secret
     depends_on:
       postgres:
         condition: service_healthy
