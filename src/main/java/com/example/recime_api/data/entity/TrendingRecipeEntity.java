@@ -29,7 +29,6 @@ public class TrendingRecipeEntity {
         this.position = position;
     }
 
-    // Getters and setters
     public Long getId() {
         return id;
     }

@@ -4,6 +4,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -64,9 +66,30 @@ public class RecipeControllerTest {
         ]
         """;
 
-        mockMvc.perform(get("/api/v1/recipes/trending/EASY")
+        mockMvc.perform(get("/api/v1/recipes/trending")
+                        .param("difficulty", "easy")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().json(expectedJson));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", "   "})
+    void givenEmptyDifficulty_whenRequestTrendingRecipes_thenReturnBadRequest(String difficultyParam) throws Exception {
+        mockMvc.perform(get("/api/v1/recipes/trending")
+                        .param("difficulty", difficultyParam)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string("A difficulty is required for filtering trending recipes"));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"FOO", "invalid", "123", "EasYy"})
+    void givenInvalidDifficulty_whenRequestTrendingRecipes_thenReturnBadRequest(String invalidDifficulty) throws Exception {
+        mockMvc.perform(get("/api/v1/recipes/trending")
+                        .param("difficulty", invalidDifficulty)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string("Invalid difficulty value provided"));
     }
 }

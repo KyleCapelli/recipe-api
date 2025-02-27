@@ -20,24 +20,24 @@ public class RecipeController {
     }
 
     @GetMapping("/trending")
-    public ResponseEntity<List<RecipeDto>> getTrendingRecipes() {
+    public ResponseEntity<?> getTrendingRecipes(@RequestParam(value = "difficulty", required = false) String difficultyStr) {
+        if (difficultyStr != null) {
+            if (difficultyStr.trim().isEmpty()) {
+                return ResponseEntity.badRequest().body("A difficulty is required for filtering trending recipes");
+            }
+            Difficulty difficulty;
+            try {
+                difficulty = Difficulty.valueOf(difficultyStr.toUpperCase());
+            } catch (IllegalArgumentException e) {
+                return ResponseEntity.badRequest().body("Invalid difficulty value provided");
+            }
+            List<Recipe> recipes = queryHandler.getTrendingRecipesByDifficulty(difficulty);
+            List<RecipeDto> recipeDtos = recipes.stream().map(this::toDto).collect(Collectors.toList());
+            return ResponseEntity.ok(recipeDtos);
+        }
+
         List<Recipe> recipes = queryHandler.getTrendingRecipes();
-        List<RecipeDto> recipeDtos = recipes.stream()
-                .map(this::toDto)
-                .collect(Collectors.toList());
-        return ResponseEntity.ok(recipeDtos);
-    }
-
-    @GetMapping("/trending/{difficulty}")
-    public ResponseEntity<List<RecipeDto>> getTrendingRecipesByDifficulty(@PathVariable("difficulty") String difficultyStr) {
-        // TODO make sure to fix this edge case
-        // You must provide the error message, “A difficulty is required for filtering trending recipes” if the request does not contain a difficulty.
-
-        Difficulty difficulty = Difficulty.valueOf(difficultyStr.toUpperCase());
-        List<Recipe> recipes = queryHandler.getTrendingRecipesByDifficulty(difficulty);
-        List<RecipeDto> recipeDtos = recipes.stream()
-                .map(this::toDto)
-                .collect(Collectors.toList());
+        List<RecipeDto> recipeDtos = recipes.stream().map(this::toDto).collect(Collectors.toList());
         return ResponseEntity.ok(recipeDtos);
     }
 

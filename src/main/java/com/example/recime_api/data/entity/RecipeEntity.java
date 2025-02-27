@@ -11,22 +11,19 @@ public class RecipeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String title;
+
+    @Column(name = "image_url", nullable = false)
     private String imageUrl;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Difficulty difficulty;
 
     protected RecipeEntity() {}
 
     public RecipeEntity(String title, String imageUrl, Difficulty difficulty) {
-        this.title = title;
-        this.imageUrl = imageUrl;
-        this.difficulty = difficulty;
-    }
-
-    public RecipeEntity(Long id, String title, String imageUrl, Difficulty difficulty) {
-        this.id = id;
         this.title = title;
         this.imageUrl = imageUrl;
         this.difficulty = difficulty;
