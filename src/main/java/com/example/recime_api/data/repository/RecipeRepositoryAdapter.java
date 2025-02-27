@@ -29,7 +29,7 @@ public class RecipeRepositoryAdapter implements RecipeRepository {
 
     @Override
     public List<Recipe> findTrendingRecipesByDifficulty(Difficulty difficulty) {
-        List<RecipeEntity> entities = recipeEntityRepository.findByDifficulty(difficulty);
+        List<RecipeEntity> entities = recipeEntityRepository.findTrendingRecipesByDifficulty(difficulty);
         return entities.stream()
                 .map(RecipeMapper::toDomain)
                 .collect(Collectors.toList());

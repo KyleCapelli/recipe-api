@@ -16,7 +16,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @ActiveProfiles("test")
-@ExtendWith(SpringExtension.class)
 class QueryHandlerTest {
 
     @Autowired
@@ -27,7 +26,7 @@ class QueryHandlerTest {
         List<Recipe> recipes = queryHandler.getTrendingRecipes();
 
         assertNotNull(recipes, "The recipes list should not be null");
-        assertEquals(3, recipes.size(), "Should return 3 recipes from data.sql");
+        assertEquals(3, recipes.size(), "Should return 3 recipes");
 
         Recipe expected1 = new Recipe("Pancakes", "https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg", Difficulty.EASY);
         Recipe expected2 = new Recipe("Bacon And Eggs", "https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg", Difficulty.MEDIUM);

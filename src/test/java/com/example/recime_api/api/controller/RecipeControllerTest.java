@@ -52,7 +52,6 @@ public class RecipeControllerTest {
                 .andExpect(content().json(expectedJson));
     }
 
-
     @Test
     void givenRequestForTrendingRecipesByDifficulty_thenReturnOnlyEasyRecipe() throws Exception {
         String expectedJson = """
