@@ -29,9 +29,9 @@ class QueryHandlerTest {
         assertNotNull(recipes, "The recipes list should not be null");
         assertEquals(3, recipes.size(), "Should return 3 recipes from data.sql");
 
-        Recipe expected1 = new Recipe("Pancakes", "http://example.com/", Difficulty.EASY);
-        Recipe expected2 = new Recipe("Bacon And Eggs", "http://example.com/", Difficulty.MEDIUM);
-        Recipe expected3 = new Recipe("Spaghetti", "http://example.com/", Difficulty.HARD);
+        Recipe expected1 = new Recipe("Pancakes", "https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg", Difficulty.EASY);
+        Recipe expected2 = new Recipe("Bacon And Eggs", "https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg", Difficulty.MEDIUM);
+        Recipe expected3 = new Recipe("Spaghetti", "https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg", Difficulty.HARD);
 
         Recipe actual1 = recipes.getFirst();
         assertEquals(expected1.getTitle(), actual1.getTitle(), "First recipe should be 'Pancakes'");
@@ -56,11 +56,11 @@ class QueryHandlerTest {
         assertNotNull(easyRecipes, "The easy recipes list should not be null");
         assertEquals(1, easyRecipes.size(), "There should be exactly one easy recipe");
 
-        Recipe expected = new Recipe("Pancakes", "http://example.com/", Difficulty.EASY);
+        Recipe expected = new Recipe("Pancakes", "https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg", Difficulty.EASY);
         Recipe actual = easyRecipes.getFirst();
 
         assertEquals(expected.getTitle(), actual.getTitle(), "Title should be 'Pancakes'");
-        assertEquals(expected.getImageUrl(), actual.getImageUrl(), "Image URL should be 'http://example.com/'");
+        assertEquals(expected.getImageUrl(), actual.getImageUrl(), "Image URL should be https://ddg0cip9uom1w.cloudfront.net/code-challenge/burger.jpg");
         assertEquals(expected.getDifficulty(), actual.getDifficulty(), "Difficulty should be EASY");
     }
 }
