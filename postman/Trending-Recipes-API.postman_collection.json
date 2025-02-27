@@ -1,0 +1,116 @@
+{
+	"info": {
+		"_postman_id": "76e417ee-08fb-4256-9637-572c0b62d0fd",
+		"name": "Trending-Recipes-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11826081"
+	},
+	"item": [
+		{
+			"name": "Get All Trending Recipes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/recipes/trending",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"recipes",
+						"trending"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Trending Recipes by Difficulty",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/recipes/trending?difficulty=easy",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"recipes",
+						"trending"
+					],
+					"query": [
+						{
+							"key": "difficulty",
+							"value": "easy"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Trending Recipes by Difficulty – Missing Parameter",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/recipes/trending?difficulty=",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"recipes",
+						"trending"
+					],
+					"query": [
+						{
+							"key": "difficulty",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Trending Recipes by Difficulty – Invalid Difficulty",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/recipes/trending?difficulty=easiest",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"recipes",
+						"trending"
+					],
+					"query": [
+						{
+							"key": "difficulty",
+							"value": "easiest"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
