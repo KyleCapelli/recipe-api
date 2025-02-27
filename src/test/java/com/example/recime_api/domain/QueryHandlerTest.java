@@ -23,26 +23,30 @@ class QueryHandlerTest {
     private QueryHandler queryHandler;
 
     @Test
-    void givenQuery_whenGetTrendingRecipes_thenReturnAllRecipesAndAssertFieldsAreCorrect() {
+    void givenQuery_whenGetTrendingRecipes_thenReturnAllRecipesAndAssertOrderAndFields() {
         List<Recipe> recipes = queryHandler.getTrendingRecipes();
 
         assertNotNull(recipes, "The recipes list should not be null");
         assertEquals(3, recipes.size(), "Should return 3 recipes from data.sql");
 
-        List<Recipe> expectedRecipes = List.of(
-                new Recipe("Pancakes", "http://example.com/", Difficulty.EASY),
-                new Recipe("Spaghetti", "http://example.com/", Difficulty.HARD),
-                new Recipe("Bacon And Eggs", "http://example.com/", Difficulty.MEDIUM)
-        );
+        Recipe expected1 = new Recipe("Pancakes", "http://example.com/", Difficulty.EASY);
+        Recipe expected2 = new Recipe("Bacon And Eggs", "http://example.com/", Difficulty.MEDIUM);
+        Recipe expected3 = new Recipe("Spaghetti", "http://example.com/", Difficulty.HARD);
 
-        for (Recipe expected : expectedRecipes) {
-            boolean found = recipes.stream().anyMatch(actual ->
-                    expected.getTitle().equals(actual.getTitle()) &&
-                            expected.getImageUrl().equals(actual.getImageUrl()) &&
-                            expected.getDifficulty().equals(actual.getDifficulty())
-            );
-            assertTrue(found, "Expected recipe " + expected + " not found.");
-        }
+        Recipe actual1 = recipes.getFirst();
+        assertEquals(expected1.getTitle(), actual1.getTitle(), "First recipe should be 'Pancakes'");
+        assertEquals(expected1.getImageUrl(), actual1.getImageUrl(), "Image URL for first recipe does not match");
+        assertEquals(expected1.getDifficulty(), actual1.getDifficulty(), "Difficulty for first recipe does not match");
+
+        Recipe actual2 = recipes.get(1);
+        assertEquals(expected2.getTitle(), actual2.getTitle(), "Second recipe should be 'Bacon And Eggs'");
+        assertEquals(expected2.getImageUrl(), actual2.getImageUrl(), "Image URL for second recipe does not match");
+        assertEquals(expected2.getDifficulty(), actual2.getDifficulty(), "Difficulty for second recipe does not match");
+
+        Recipe actual3 = recipes.get(2);
+        assertEquals(expected3.getTitle(), actual3.getTitle(), "Third recipe should be 'Spaghetti'");
+        assertEquals(expected3.getImageUrl(), actual3.getImageUrl(), "Image URL for third recipe does not match");
+        assertEquals(expected3.getDifficulty(), actual3.getDifficulty(), "Difficulty for third recipe does not match");
     }
 
     @Test

@@ -20,8 +20,8 @@ public class RecipeRepositoryAdapter implements RecipeRepository {
     }
 
     @Override
-    public List<Recipe> findTrendingRecipes() {
-        List<RecipeEntity> entities = recipeEntityRepository.findAll();
+    public List<Recipe> findTrendingRecipesOrdered() {
+        List<RecipeEntity> entities = recipeEntityRepository.findTrendingRecipesOrdered();
         return entities.stream()
                 .map(RecipeMapper::toDomain)
                 .collect(Collectors.toList());

@@ -17,7 +17,7 @@ public class QueryHandler {
     }
 
     public List<Recipe> getTrendingRecipes() {
-        return recipeRepository.findTrendingRecipes();
+        return recipeRepository.findTrendingRecipesOrdered();
     }
 
     public List<Recipe> getTrendingRecipesByDifficulty(Difficulty difficulty) {

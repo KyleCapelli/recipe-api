@@ -6,6 +6,6 @@ import com.example.recime_api.domain.model.Recipe;
 import java.util.List;
 
 public interface RecipeRepository {
-    List<Recipe> findTrendingRecipes();
+    List<Recipe> findTrendingRecipesOrdered();
     List<Recipe> findTrendingRecipesByDifficulty(Difficulty difficulty);
 }
