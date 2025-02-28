@@ -41,10 +41,8 @@ When using it I come across a few pros and cons in the process:
 
 ## Running the project locally
 Prerequisites
-- **Java JDK 23**
 - **Docker:**  
   Needed to containerize and run the project.
-
 
 ### Running with Docker
 
@@ -141,3 +139,15 @@ Let's say we are to add a new endpoint to upload a recipe - these are the change
 - The write repository will then perform the update on the Master db
 
 As ReciMe will be a read heavy application, by separating reads from writes will improve system performance overall.
+
+## Extra Work because Why Not? 😄 
+
+I've gone ahead and created a SwiftUI mobile application that mimics the image that was presented in the challenge scope
+
+I ran the docker container on my machine which ran the server and I've attached a video to show you the e2e flow working!
+
+Check out this video for a [demonstration of the entire application working](https://drive.google.com/file/d/1-0RugJxgw11mK9woAKBgirkpmQnHf44S/view?usp=sharing)
+
+_Note: a few errors I noticed in the video:_
+- I'm running a docker container not a docker image (oops)
+- You shouldn't need Java 23 installed on your machine -  the docker container is already bundled with a Java 23 JRE, so no additional Java installation is required.
