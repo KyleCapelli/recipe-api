@@ -15,3 +15,9 @@ CREATE TABLE IF NOT EXISTS trending_recipe
     position  INTEGER NOT NULL,
     CONSTRAINT fk_recipe FOREIGN KEY (recipe_id) REFERENCES recipe (id)
 );
+
+CREATE INDEX idx_recipe_difficulty ON recipe (difficulty);
+
+CREATE INDEX idx_trending_recipe_recipe_id ON trending_recipe (recipe_id);
+
+CREATE INDEX idx_trending_recipe_position ON trending_recipe (position);

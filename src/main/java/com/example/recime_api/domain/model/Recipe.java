@@ -42,6 +42,4 @@ public class Recipe {
                 ", difficulty=" + difficulty +
                 '}';
     }
-
-    // equals and hashCode based on business keys or id
 }
