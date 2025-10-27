@@ -1,4 +1,4 @@
-# Recime API
+# Recipe API
 
 A Java application using the Spring framework that allows the ability to:
 1. View a list of recently trending recipes
@@ -147,7 +147,3 @@ I've gone ahead and created a SwiftUI mobile application that mimics the image t
 I ran the docker container on my machine which ran the server and I've attached a video to show you the e2e flow working!
 
 Check out this video for a [demonstration of the entire application working](https://drive.google.com/file/d/1-0RugJxgw11mK9woAKBgirkpmQnHf44S/view?usp=sharing)
-
-_Note: a few errors I noticed in the video:_
-- I'm running a docker container not a docker image (oops)
-- You shouldn't need Java 23 installed on your machine -  the docker container is already bundled with a Java 23 JRE, so no additional Java installation is required.
